@@ -20,11 +20,12 @@
         Download Video
       </a>
     </div>
+    <VideoPlayer :video-id="lesson?.videoId" />
     <p>{{ lesson?.text }}</p>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const course = useCourse();
 const route = useRoute();
 
