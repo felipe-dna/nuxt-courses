@@ -22,6 +22,10 @@
     </div>
     <VideoPlayer :video-id="lesson?.videoId" />
     <p>{{ lesson?.text }}</p>
+    <LessonCompleteButton
+      :model-value="isLessonComplete"
+      @update:model-value="toggleComplete"
+    />
   </div>
 </template>
 
@@ -45,5 +49,29 @@ const title = computed(() => `${lesson.value.title} - ${course.title}`);
 
 useHead({
   title,
+});
+
+const isLessonComplete = computed(() => {
+  const currentChapter = progress.value?.[chapter.value.number - 1];
+  return currentChapter?.[lesson.value.number - 1] ?? false;
+
+  // if (!currentChapter) return false;
+
+  // if (!currentChapter[lesson.value.number - 1]) return false;
+
+  // return currentChapter[lesson.value.number - 1];
+});
+
+const toggleComplete = () => {
+  if (!progress.value[chapter.value.number - 1]) {
+    progress.value[chapter.value.number - 1] = [];
+  }
+
+  progress.value[chapter.value.number - 1][lesson.value.number - 1] =
+    !isLessonComplete.value;
+};
+
+const progress = useState("progress", () => {
+  return [];
 });
 </script>

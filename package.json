@@ -12,6 +12,8 @@
     "nuxt": "3.0.0"
   },
   "dependencies": {
+    "@vueuse/core": "^10.1.2",
+    "@vueuse/nuxt": "^10.1.2",
     "nuxi": "^3.5.3"
   }
 }
