@@ -51,6 +51,18 @@ useHead({
   title,
 });
 
+/**
+ * Using State
+ */
+// const progress = useState("progress", () => {
+//   return [];
+// });
+
+/**
+ * Using Local Storage
+ */
+const progress = useLocalStorage("progress", []);
+
 const isLessonComplete = computed(() => {
   const currentChapter = progress.value?.[chapter.value.number - 1];
   return currentChapter?.[lesson.value.number - 1] ?? false;
@@ -70,8 +82,4 @@ const toggleComplete = () => {
   progress.value[chapter.value.number - 1][lesson.value.number - 1] =
     !isLessonComplete.value;
 };
-
-const progress = useState("progress", () => {
-  return [];
-});
 </script>
